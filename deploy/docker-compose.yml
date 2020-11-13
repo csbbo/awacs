@@ -23,9 +23,9 @@ services:
       - redis
     volumes:
       - "./data:/dev/data"
-  openresty:
-    image: as_openresty:latest
-    container_name: as_openresty
+  nginx:
+    image: as_nginx:latest
+    container_name: as_nginx
     restart: always
     ports:
       - 80:80
