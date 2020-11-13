@@ -16,10 +16,21 @@ services:
     image: as_server:latest
     container_name: as_server
     restart: always
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     depends_on:
       - postgres
       - redis
     volumes:
       - "./data:/dev/data"
+  openresty:
+    image: as_openresty:latest
+    container_name: as_openresty
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - postgres
+      - redis
+      - server
