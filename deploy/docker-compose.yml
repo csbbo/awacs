@@ -1,0 +1,25 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: as_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: awacs
+      POSTGRES_PASSWORD: "awacs"
+      POSTGRES_USER: awacs
+  redis:
+    image: redis:4.0-alpine
+    container_name: as_redis
+    restart: always
+  server:
+    image: as_server:latest
+    container_name: as_server
+    restart: always
+     ports:
+     - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - "./data:/dev/data"
