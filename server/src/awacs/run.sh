@@ -10,4 +10,4 @@ while :; do
 done
 
 echo -e "\e[1;31m 2. running \e[0m"
-python3 manage.py runserver
+daphne awacs.asgi:application

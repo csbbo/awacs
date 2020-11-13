@@ -16,8 +16,8 @@ services:
     image: as_server:latest
     container_name: as_server
     restart: always
-     ports:
-     - "8000:8000"
+    ports:
+      - "8000:8000"
     depends_on:
       - postgres
       - redis
