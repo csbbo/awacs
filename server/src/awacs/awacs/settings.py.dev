@@ -166,4 +166,4 @@ TU_SHARE_TOKE = '595b56a214096d039f53fc2a4c3779a2217bd504eb1f0b9a24b07991'
 TU_SHARE_PRO = ts.pro_api(TU_SHARE_TOKE)
 
 
-DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../../data"))
+DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../../deploy/data"))
