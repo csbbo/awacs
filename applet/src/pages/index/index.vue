@@ -1,19 +1,20 @@
 <template>
-  <div>
-    <span class="msg">Hello Word</span>
-    <van-button type="primary" @click="jump">按钮</van-button>
+  <div class="home">
+    <SearchBar />
   </div>
 </template>
 
 <script>
+  import SearchBar from '../../components/home/SearchBar'
   const fly = require('flyio/dist/npm/wx')
   export default {
+    components: {
+      SearchBar
+    },
     methods: {
       jump () {
-        // this.$router.push('/pages/index/main')
-        // this.$router.replace('/pages/index/main')
         fly().get('https://www.baidu.com').then(response => {
-          console.log('handleResponse...')
+          console.log('handleResponse...' + response)
         })
       }
     }
@@ -21,8 +22,4 @@
 </script>
 
 <style lang="scss" scoped>
-.msg {
-  color: red;
-  font-size: 20px;
-}
 </style>
