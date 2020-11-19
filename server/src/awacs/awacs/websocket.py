@@ -5,34 +5,6 @@ from urllib import parse
 from django.urls import resolve, Resolver404
 
 logger = logging.getLogger(__name__)
-# async def websocket_application(scope, receive, send):
-#     while True:
-#         event = await receive()
-#
-#         if event['type'] == 'websocket.connect':
-#             await send({
-#                 'type': 'websocket.accept',
-#                 'text': 'accept!'
-#             })
-#             await send({
-#                 'type': 'websocket.send',
-#                 'text': 'send! haha!'
-#             })
-#             logger.error('hahaha')
-#
-#         if event['type'] == 'websocket.disconnect':
-#             break
-#
-#         if event['type'] == 'websocket.receive':
-#             if event['text'] == 'ping':
-#                 await send({
-#                     'type': 'websocket.send',
-#                     'text': 'pong!'
-#                 })
-#             await send({
-#                 'type': 'websocket.send',
-#                 'text': 'hahahh!'
-#             })
 
 
 class State:

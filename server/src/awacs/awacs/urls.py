@@ -8,7 +8,6 @@ from django.contrib.staticfiles.views import serve
 from django.urls import path, re_path
 from django.conf import settings
 from utils.api import APIView
-from account import views
 
 logger = logging.getLogger(__name__)
 
