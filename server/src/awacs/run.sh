@@ -10,4 +10,4 @@ while :; do
 done
 
 echo -e "\e[1;31m 2. running \e[0m"
-daphne awacs.asgi:application
+daphne -p 8002 awacs.asgi:application

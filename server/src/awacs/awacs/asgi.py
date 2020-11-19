@@ -10,21 +10,9 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 import os
 
 from django.core.asgi import get_asgi_application
-
-from awacs.websocket import websocket_application
+from awacs.websocket import websocket_middleware
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'awacs.settings')
 
 application = get_asgi_application()
-
-
-def websocket(app):
-    async def asgi(scope, receive, send):
-        if scope["type"] == "websocket":
-            await websocket_application(scope, receive, send)
-            return
-        await app(scope, receive, send)
-    return asgi
-
-
-application = websocket(application)
+application = websocket_middleware(application)

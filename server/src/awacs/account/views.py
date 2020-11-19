@@ -1,8 +1,14 @@
+import asyncio
+import logging
+
 from django.http import JsonResponse
 from django.core.cache import cache
 import json
 
 from utils.api import APIView
+
+
+logger = logging.getLogger(__name__)
 
 
 class HomeTestAPI(APIView):
@@ -29,3 +35,33 @@ class HomeTestAPI(APIView):
             'data': None
         }
         return JsonResponse(data)
+
+
+async def ws_socket(socket):
+    logger.error(socket.query_params)
+    await socket.accept()
+    await socket.send_text('hello')
+    await asyncio.sleep(3)
+    await socket.send_text('hello1')
+    await asyncio.sleep(10)
+    await socket.send_text('hello2')
+    await asyncio.sleep(3)
+    await socket.send_text('hello3')
+    await asyncio.sleep(3)
+    await socket.send_text('hello4')
+    await socket.close()
+
+
+async def connection_socket(socket):
+    await socket.accept()
+    await socket.send_text('hello')
+    await asyncio.sleep(3)
+    await socket.send_text('hello1')
+    await asyncio.sleep(10)
+    await socket.send_text('hello2')
+    await asyncio.sleep(3)
+    await socket.send_text('hello3')
+    await asyncio.sleep(3)
+    await socket.send_text('hello4')
+    await socket.close()
+
