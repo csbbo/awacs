@@ -5,7 +5,7 @@ import os
 from django.conf import settings
 from django.core.cache import cache
 
-from stock.models import Stock
+from stock.models import Stock, Optional
 from stock.serializers import StockSerializer, SubscribeStockSerializer
 from utils.api import APIView, check
 from utils.shortcuts import is_letter, df_to_list, get_today_zero_last
@@ -68,13 +68,11 @@ class StockPriceAPI(APIView):
 
 class WsAPI(APIView):
     def get(self, request):
-        with open(os.path.join(settings.DATA_PATH, 'ws.json'), 'r') as f:
-            data = json.load(f)
-        code = data.get('code', None)
         data = {}
+        symbols = list(Optional.objects.all().values_list('symbol', flat=True))
         try:
-            df = tushare.get_realtime_quotes(code)
-            for i in range(len(code)):
+            df = tushare.get_realtime_quotes(symbols)
+            for i in range(len(symbols)):
                 price = float(df.at[i, 'price'])
                 pre_close = float(df.at[i, 'pre_close'])
                 rose = str(round((price - pre_close) / pre_close * 100, 3)) + '%'

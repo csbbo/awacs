@@ -48,3 +48,15 @@ class SubscribeStock(models.Model):
     class Meta:
         verbose_name = 'SubscribeStock'
         verbose_name_plural = verbose_name
+
+
+class Optional(models.Model):
+    symbol = models.CharField(primary_key=True, max_length=16)
+    name = models.CharField(null=True, max_length=16)
+
+    create_time = models.DateTimeField(auto_now_add=True)
+    modify_time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Optional'
+        verbose_name_plural = verbose_name

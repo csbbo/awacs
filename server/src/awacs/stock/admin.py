@@ -1,5 +1,5 @@
 from django.contrib import admin
-from stock.models import Stock, SubscribeStock
+from stock.models import *
 
 
 @admin.register(Stock)
@@ -13,3 +13,8 @@ class StockAdmin(admin.ModelAdmin):
 @admin.register(SubscribeStock)
 class SubscribeStockAdmin(admin.ModelAdmin):
     list_display = ('symbol', 'name', 'refer')
+
+
+@admin.register(Optional)
+class OptionalAdmin(admin.ModelAdmin):
+    list_display = ('symbol', 'name')
