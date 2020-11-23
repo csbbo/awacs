@@ -20,7 +20,7 @@ services:
       - postgres
       - redis
     volumes:
-      - "./data:/dev/data"
+      - "./awacs/static:/dev/awacs/static"
   nginx:
     image: as_nginx:latest
     container_name: as_nginx
@@ -32,3 +32,5 @@ services:
       - postgres
       - redis
       - server
+    volumes:
+      - "./awacs/static:/web/nginx/static"

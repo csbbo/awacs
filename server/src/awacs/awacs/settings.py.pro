@@ -155,7 +155,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
+# 静态文件存放路径
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../dev/awacs/static"))
 
 EMAIL_FROM_ADDR = "599883519@qq.com"
 EMAIL_PASSWORD = "jnwflkeolinmbcad"
@@ -164,6 +165,3 @@ EMAIL_PORT = 587
 
 TU_SHARE_TOKE = '595b56a214096d039f53fc2a4c3779a2217bd504eb1f0b9a24b07991'
 TU_SHARE_PRO = ts.pro_api(TU_SHARE_TOKE)
-
-
-DATA_PATH = os.path.abspath("/dev/data")
