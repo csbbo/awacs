@@ -68,8 +68,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
 
-        # scheduler.add_job(update_stocks, 'cron', day_of_week='mon-fri', hour=9)
-        scheduler.add_job(update_stocks, 'interval', seconds=10)
+        scheduler.add_job(update_stocks, 'cron', day_of_week='mon-fri', hour=9)
+        # scheduler.add_job(update_stocks, 'interval', seconds=10)
         logger.info("Added job 'my_job'.")
 
         try:
