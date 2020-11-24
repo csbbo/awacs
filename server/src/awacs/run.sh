@@ -13,7 +13,7 @@ while :; do
 done
 
 echo -e "\e[1;31m 3. dramatiq task \e[0m"
-python3 manage.py rundramatiq -p 4 -t 4 --log-file /dev/awacs/logs/dramatiq.log &
+python3 manage.py rundramatiq -p 4 -t 4 > /dev/awacs/logs/dramatiq.log 2>&1 &
 
 echo -e "\e[1;31m 4. apscheduler task \e[0m"
 python3 manage.py apscheduler > /dev/awacs/logs/apscheduler.log 2>&1 &
