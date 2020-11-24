@@ -156,7 +156,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # 静态文件存放路径
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../../nginx/static"))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../../deploy/awacs/static"))
 
 EMAIL_FROM_ADDR = "599883519@qq.com"
 EMAIL_PASSWORD = "jnwflkeolinmbcad"
