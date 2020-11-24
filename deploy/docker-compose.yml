@@ -23,6 +23,7 @@ services:
       - redis
     volumes:
       - "./awacs/static:/dev/awacs/static"
+      - "./awacs/logs:/dev/awacs/logs"
   nginx:
     image: as_nginx:latest
     container_name: as_nginx
