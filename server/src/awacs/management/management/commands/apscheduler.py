@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
         scheduler.add_job(update_stocks, 'cron', day_of_week='1-5', hour=9, minute=25)
         # scheduler.add_job(update_stocks, 'interval', seconds=10)
-        logger.info("Added job 'my_job'.")
+        logger.info("Added job 'update_stocks'.")
 
         try:
             logger.info("Starting scheduler...")
