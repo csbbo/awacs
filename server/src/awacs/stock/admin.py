@@ -18,3 +18,8 @@ class SubscribeStockAdmin(admin.ModelAdmin):
 @admin.register(Optional)
 class OptionalAdmin(admin.ModelAdmin):
     list_display = ('symbol', 'name')
+
+
+@admin.register(CmdQueryRose)
+class CmdQueryRoseAdmin(admin.ModelAdmin):
+    list_display = ('symbol', 'name', 'short_pinyin', 'owner', 'create_time', 'modify_time')
