@@ -63,7 +63,7 @@ class Optional(models.Model):
 
 
 class CmdQueryRose(models.Model):
-    id = models.IntegerField('ID', primary_key=True)
+    id = models.IntegerField('ID', primary_key=True, auto_created=True)
     symbol = models.CharField('股票代码', max_length=16)
     name = models.CharField('股票名称', null=True, max_length=16)
     short_pinyin = models.CharField('简拼', max_length=16, db_index=True)
