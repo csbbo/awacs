@@ -5,7 +5,7 @@ import os
 from django.conf import settings
 from django.core.cache import cache
 
-from stock.models import Stock, Optional
+from stock.models import Stock, Optional, CmdQueryRose
 from stock.serializers import StockSerializer, SubscribeStockSerializer
 from utils.api import APIView, check
 from utils.shortcuts import is_letter, df_to_list, get_today_zero_last
@@ -63,6 +63,22 @@ class StockPriceAPI(APIView):
         except Exception as e:
             logger.error(e)
             return self.error('查询错误')
+        return self.success(data)
+
+
+class HiddenQueryAPI(APIView):
+    def get(self, request):
+        data = request.data
+        owner = data.get('owner', None)
+        cmdqs = CmdQueryRose.objects.filter(owner=owner)
+        symbols = list(cmdqs.values_list('symbol', flat=True))
+        data = {item.short_pinyin: 0 for item in cmdqs}
+        df = tushare.get_realtime_quotes(symbols)
+        for i, name in enumerate(data):
+            price = float(df.at[i, 'price'])
+            pre_close = float(df.at[i, 'pre_close'])
+            rose = str(round((price - pre_close) / pre_close * 100, 3)) + '%'
+            data[name] = rose
         return self.success(data)
 
 

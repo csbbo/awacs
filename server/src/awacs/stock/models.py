@@ -60,3 +60,18 @@ class Optional(models.Model):
     class Meta:
         verbose_name = 'Optional'
         verbose_name_plural = verbose_name
+
+
+class CmdQueryRose(models.Model):
+    id = models.IntegerField('ID', primary_key=True)
+    symbol = models.CharField('股票代码', max_length=16)
+    name = models.CharField('股票名称', null=True, max_length=16)
+    short_pinyin = models.CharField('简拼', max_length=16, db_index=True)
+    owner = models.CharField('Owner', max_length=16, db_index=True)
+
+    create_time = models.DateTimeField('创建时间', auto_now_add=True)
+    modify_time = models.DateTimeField('修改时间', auto_now=True)
+
+    class Meta:
+        verbose_name = 'CmdQueryRose'
+        verbose_name_plural = verbose_name
