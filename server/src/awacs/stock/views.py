@@ -16,6 +16,42 @@ import tushare
 logger = logging.getLogger(__name__)
 
 
+class SearchPriceAPI(APIView):
+    def get(self, request):
+        data = request.data
+        search = data.get('s', None)
+        if not search:
+            return self.error("search can not be null!")
+
+        if search.isdigit():
+            query = {'symbol__startswith': search}
+        elif is_letter(search):
+            query = {'short_pinyin__startswith': search.lower()}
+        else:
+            query = {'name__icontains': search}
+        stocks = Stock.objects.filter(**query).values_list('symbol', 'name')
+
+        data_list = []
+        for code, name in stocks:
+            try:
+                df = tushare.get_realtime_quotes(code)
+                price = float(df.at[0, 'price'])
+                pre_close = float(df.at[0, 'pre_close'])
+                data_list.append(
+                    {
+                        'name': name,
+                        'price': price,
+                        'rose': f"{round((price - pre_close) / pre_close * 100, 3)}%",
+                    }
+                )
+            except IndexError:
+                return self.error('查询不存在')
+            except Exception as e:
+                logger.error(e)
+                return self.error('查询错误')
+        return self.response({"list": data_list})
+
+
 class SearchStockAPI(APIView):
     def get(self, request):
         data = request.data

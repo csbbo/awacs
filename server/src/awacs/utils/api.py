@@ -20,6 +20,9 @@ class APIView(View):
             json.loads(self.request.body.decode("utf-8"))
         return self.request.GET
 
+    def response(self, data: typing.Union[list, dict, int, float, str] = None, status: int = 200):
+        return JsonResponse(data, status=status)
+
     def success(self, data: typing.Union[list, dict, int, float, str] = None, status: int = 200):
         return JsonResponse({"err": None, "data": data}, status=status)
 
